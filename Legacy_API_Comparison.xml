@@ -1,0 +1,108 @@
+<data>
+    <suite>
+        <project>GEMECO-API-PY</project>
+        <report_name>Comparing Legacy vs New Endpoint</report_name>
+        <mode>optimize</mode>
+        <bridge_token>03c1d250-79b9-493c-b444-109876542113466</bridge_token>
+        <username>tanya.agarwal</username>
+        <env>prod</env>
+    </suite>
+    <testcases>
+    <testcase>
+            <name>legacy to suiteexe api</name>
+            <category>GET API</category>
+            <run_flag>Y</run_flag>
+            <api>https://apis-beta.gemecosystem.com/suiteexe?s_run_id=$[#SUITE.varpost]</api>
+            <method>GET</method>
+            <body>{}</body>
+            <headers>{}</headers>
+            <expected_status_code>200,300,400</expected_status_code>
+            <pre_variables>set $[#SUITE.varpost]=GEMECOSYSTEM_APIS_BETA_B681AD35-95C6-44B7-8375-823903CB9B8A</pre_variables>
+            <legacy_api>https://apis.gemecosystem.com/suiteexe?s_run_id=GEMECOSYSTEM_APIS_PROD_8FA02C1D-0EEE-44A7-8F7A-F207CAA78DB1</legacy_api>
+            <legacy_method>GET</legacy_method>
+            <legacy_headers>{"accept":"application/json"}</legacy_headers>
+            <legacy_body>{}</legacy_body>
+            <legacy_expected_status_code>200,300,400</legacy_expected_status_code>
+            <key_check>keys are legacy.data, legacy.data.s_id</key_check>
+            <post_assertion>compare data.s_id to "test_id";compare legacy.data.s_id to "test_id"; compare data.initiated_by not to "Arpit";compare legacy.data.run_mode not in ["ON DEMAND", "NOT ON DEMAND"];compare data.run_mode in ["ON DEMAND","WINDOWS"];compare message contains "Data" </post_assertion>
+            <debug_mode>false</debug_mode>
+            <TYPE>PYPREST</TYPE>
+        </testcase>
+        <testcase>
+            <name>legacy to company API</name>
+            <category>GET API</category>
+            <run_flag>Y</run_flag>
+            <api>https://apis-beta.gemecosystem.com/company</api>
+            <method>GET</method>
+            <body>{}</body>
+            <headers>{}</headers>
+            <expected_status_code>200</expected_status_code>
+            <legacy_api>https://apis.gemecosystem.com/company</legacy_api>
+            <legacy_method>GET</legacy_method>
+            <legacy_headers>{"accept":"application/json"}</legacy_headers>
+            <legacy_body>{}</legacy_body>
+            <legacy_expected_status_code>200</legacy_expected_status_code>
+            <key_check>keys are legacy.data, legacy.operation</key_check>
+            <post_assertion>compare legacy.operation to response.operation;</post_assertion>
+            <debug_mode>false</debug_mode>
+            <TYPE>PYPREST</TYPE>
+        </testcase>
+        <testcase>
+            <name>legacy to validate Username</name>
+            <category>GET API</category>
+            <run_flag>Y</run_flag>
+            <api>https://apis-beta.gemecosystem.com/validate/username?username=$[#SUITE.username]</api>
+            <method>GET</method>
+            <body>{}</body>
+            <headers>{}</headers>
+            <expected_status_code>200</expected_status_code>
+            <pre_variables>set $[#SUITE.username]=arpit.mishra</pre_variables>
+            <legacy_api>https://apis.gemecosystem.com/validate/username?username=arpit.mishra</legacy_api>
+            <legacy_method>GET</legacy_method>
+            <legacy_headers>{"accept":"application/json"}</legacy_headers>
+            <legacy_body>{}</legacy_body>
+            <legacy_expected_status_code>200</legacy_expected_status_code>
+            <key_check>keys are legacy.data.isPresent</key_check>
+            <debug_mode>false</debug_mode>
+            <TYPE>PYPREST</TYPE>
+        </testcase>
+        <testcase>
+            <name>legacy to Get token bridge</name>
+            <category>GET API</category>
+            <run_flag>Y</run_flag>
+            <api>https://apis-beta.gemecosystem.com/bridge/token</api>
+            <method>GET</method>
+            <body>{}</body>
+            <headers>{"Authorization": "Bearer 4a0bb70b-23fa-4801-b047-568a3fa059871656932464937"}</headers>
+            <expected_status_code>403</expected_status_code>
+            <legacy_api>https://apis.gemecosystem.com/bridge/token</legacy_api>
+            <legacy_method>GET</legacy_method>
+            <legacy_headers>{"Authorization": "Bearer 4a0bb70b-23fa-4801-b047-568a3fa059871656932464937"}</legacy_headers>
+            <legacy_body>{}</legacy_body>
+            <legacy_expected_status_code>403</legacy_expected_status_code>
+            <debug_mode>false</debug_mode>
+            <TYPE>PYPREST</TYPE>
+        </testcase>
+        <testcase>
+            <name>legacy to testexe API</name>
+            <category>GET API</category>
+            <run_flag>Y</run_flag>
+            <api>https://apis-beta.gemecosystem.com/testcase?tc_run_id=$[#SUITE.id]</api>
+            <method>GET</method>
+            <body>{}</body>
+            <headers>{}</headers>
+            <expected_status_code>200</expected_status_code>
+            <pre_variables>set $[#SUITE.id]=create_complete_user_b681ad35-95c6-44b7-8375-823903cb9b8a</pre_variables>
+            <legacy_api>https://apis-beta.gemecosystem.com/testcase?tc_run_id=create_complete_user_b681ad35-95c6-44b7-8375-823903cb9b8a</legacy_api>
+            <legacy_method>GET</legacy_method>
+            <legacy_headers>{"accept":"application/json"}</legacy_headers>
+            <legacy_body>{}</legacy_body>
+            <legacy_expected_status_code>200</legacy_expected_status_code>
+            <key_check>keys are legacy.data, legacy.data.tc_run_id</key_check>
+            <post_variables></post_variables>
+            <post_assertion>compare legacy.message to "Data fetched successfully!";compare legacy.data.miscData[0].value to data.miscData[0].value;</post_assertion>
+            <debug_mode>false</debug_mode>
+            <TYPE>PYPREST</TYPE>
+        </testcase>
+    </testcases>
+</data>
