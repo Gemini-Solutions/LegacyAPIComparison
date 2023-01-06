@@ -3,8 +3,8 @@
         <project>GEMECO-API-PY</project>
         <report_name>Comparing Legacy vs New Endpoint</report_name>
         <mode>optimize</mode>
-        <bridge_token>03c1d250-79b9-493c-b444-109876542113466</bridge_token>
-        <username>tanya.agarwal</username>
+        <bridge_token>bridgetoken</bridge_token>
+        <username>username</username>
         <env>prod</env>
     </suite>
     <testcases>
